@@ -1,0 +1,42 @@
+* {
+  color: white;
+}
+
+mat-card {
+  box-shadow: none;
+}
+
+img {
+  width: 200px;
+  border-radius: 50%;
+  padding: 20px;
+}
+
+mat-card-header,
+mat-card-title,
+mat-card-subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-card-content {
+  padding: 0 30px;
+}
+
+.container {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  max-width: 350px;
+  background-color: darksalmon;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

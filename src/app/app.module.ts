@@ -12,6 +12,7 @@ import { DocumentationViewComponent } from './views/documentation-view/documenta
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { FormComponent } from './components/home/form/form.component';
+import { CardsComponent } from './components/team/cards/cards.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormComponent } from './components/home/form/form.component';
     HeaderComponent,
     FooterComponent,
     FormComponent,
+    CardsComponent,
   ],
   imports: [
     BrowserModule,
