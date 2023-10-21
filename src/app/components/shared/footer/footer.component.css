@@ -1,0 +1,42 @@
+footer {
+  background-color: darksalmon;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+}
+
+.left,
+.center,
+.right {
+  flex: 1;
+  text-align: center; /* Center the content within each section */
+}
+
+.special-text {
+  transition: 500ms;
+  border-radius: 20px;
+}
+
+.special-text:hover {
+  background-color: white;
+  transform: scale(1.2);
+  color: darksalmon;
+}
