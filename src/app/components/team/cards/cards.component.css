@@ -26,6 +26,7 @@ mat-card-content {
 
 .container {
   margin: 20px;
+  width: 95vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -35,7 +36,7 @@ mat-card-content {
 
 .card {
   max-width: 350px;
-  background-color: darksalmon;
+  background-color: rgba(63, 81, 181, 0.87);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
