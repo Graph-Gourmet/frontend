@@ -1,1 +1,89 @@
-<p>form works!</p>
+<form class="example-form">
+  <div class="container">
+    <div class="flex"><h2>Enter your Ingredient 🧑‍🍳</h2></div>
+    <div class="flex">
+      <div class="flex-son">
+        <mat-form-field class="example-full-width">
+          <mat-label>Recipe</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Recipe"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="autoRecipe"
+          />
+          <mat-autocomplete autoActiveFirstOption #autoRecipe="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredOptions | async"
+              [value]="option"
+            >
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div class="flex-son">
+        <mat-form-field class="example-chip-list">
+          <mat-label>Disliked Ingredients</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Ingredient selection">
+            <mat-chip-row
+              *ngFor="let ingredient of ingredients"
+              (removed)="remove(ingredient)"
+            >
+              {{ ingredient }}
+              <button matChipRemove [attr.aria-label]="'remove ' + ingredient">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          </mat-chip-grid>
+          <input
+            placeholder="New Ingredient..."
+            #ingredientInput
+            [formControl]="ingredientCtrl"
+            [matChipInputFor]="chipGrid"
+            [matAutocomplete]="autoIngredients"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)"
+          />
+          <mat-autocomplete
+            #autoIngredients="matAutocomplete"
+            (optionSelected)="selected($event)"
+          >
+            <mat-option
+              *ngFor="let ingredient of filteredIngredients | async"
+              [value]="ingredient"
+            >
+              {{ ingredient }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="flex">
+      <button mat-raised-button color="primary" (click)="onSubmit()">
+        Find
+      </button>
+    </div>
+  </div>
+
+  <div class="container scrollable-section">
+    <div class="flex">
+      <h2>Results 🧑‍🍳</h2>
+    </div>
+    <div class="flex" *ngIf="!hidden">
+      <mat-card *ngFor="let recipe of responseRecipes" class="example-card">
+        <mat-card-header>
+          <mat-card-title>{{ recipe.titulo }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ recipe.descripcion }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</form>

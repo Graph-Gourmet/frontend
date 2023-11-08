@@ -13,6 +13,7 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { FormComponent } from './components/home/form/form.component';
 import { CardsComponent } from './components/team/cards/cards.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CardsComponent } from './components/team/cards/cards.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

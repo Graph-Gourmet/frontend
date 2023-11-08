@@ -12,6 +12,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatOptionModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -31,6 +34,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     ReactiveFormsModule,
     FormsModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatButtonModule,
@@ -48,6 +54,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     ReactiveFormsModule,
     FormsModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    MatSnackBarModule,
   ],
 })
 export class MaterialModule {}

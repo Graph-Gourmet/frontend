@@ -1,12 +1,12 @@
 footer {
-  background-color: darksalmon;
+  background-color: rgba(63, 81, 181, 0.87);
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
   color: white;
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   position: fixed;
 }
 
@@ -17,6 +17,7 @@ a {
 
 a:hover {
   text-decoration: underline;
+  color: rgb(211, 215, 235);
 }
 
 .container {
@@ -39,5 +40,5 @@ a:hover {
 .special-text:hover {
   background-color: white;
   transform: scale(1.2);
-  color: darksalmon;
+  color: rgba(63, 81, 181, 0.87);
 }
