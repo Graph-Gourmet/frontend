@@ -1,7 +1,7 @@
 @import url("https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css");
 
 mat-form-field {
-  width: 40% !important;
+  /* width: 40% !important; */
 }
 
 mat-card {
@@ -29,4 +29,17 @@ img {
 
 .flex > * {
   margin: 10px;
+}
+
+.flex-son {
+  width: 30%;
+}
+
+.flex-son > mat-form-field {
+  width: 100%;
+}
+
+.scrollable-section {
+  overflow-y: auto;
+  max-height: 500px;
 }

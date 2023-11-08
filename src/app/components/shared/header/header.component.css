@@ -50,6 +50,15 @@ a:hover {
   color: rgb(211, 215, 235);
 }
 
+a:focus {
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+
 .left-section {
   display: flex;
   align-items: center;
