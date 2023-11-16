@@ -6,6 +6,8 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable, map, startWith } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FoodApiService } from 'src/app/services/food-api.service';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-form',
@@ -13,28 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-  recipes = [
-    'Spaghetti Bolognese',
-    'Chicken Alfredo',
-    'Beef Stroganoff',
-    'Vegetarian Lasagna',
-    'Margherita Pizza',
-    'Tofu Stir-Fry',
-    'Shrimp Scampi',
-    'Chocolate Brownies',
-    'Caesar Salad',
-    'Tiramisu',
-    'Chicken Tacos',
-    'Mushroom Risotto',
-    'Thai Green Curry',
-    'Beef Burritos',
-    'Caprese Salad',
-    'Spinach and Feta Stuffed Chicken',
-    'Vegetable Pad Thai',
-    'Grilled Salmon',
-    'Penne alla Vodka',
-    'Chocolate Chip Cookies',
-  ];
+  recipes = this.recipeService.getRecipeNames();
   myControl = new FormControl('');
   filteredOptions!: Observable<string[]>;
   filteredOptionsIngredients!: Observable<string[]>;
@@ -42,61 +23,24 @@ export class FormComponent {
   ingredientCtrl = new FormControl('');
   filteredIngredients: Observable<string[]>;
   ingredients: string[] = [];
-  allIngrediens: string[] = [
-    'Apple',
-    'Lemon',
-    'Lime',
-    'Orange',
-    'Strawberry',
-    'Salt',
-    'Sugar',
-    'Tomato',
-    'Potato',
-    'Flour',
-    'Butter',
-    'Oregano',
-    'Pepper',
-    'Chile',
-  ];
+  allIngrediens: string[] | undefined;
   announcer = inject(LiveAnnouncer);
   hidden: boolean = true;
+  loading: boolean = false;
+  responseRecipes: any;
 
-  responseRecipes = [
-    { codigo: 123, titulo: 'Paste', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 122, titulo: 'Brownie', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 121, titulo: 'Cookie', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 120, titulo: 'Tomate soap', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 119, titulo: 'Menestrone', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-    { codigo: 118, titulo: 'BBQ', descripcion: 'dsafsafdsfsdaf' },
-  ];
-
-  constructor(private snackBar: MatSnackBar) {
+  constructor(
+    private snackBar: MatSnackBar,
+    private foodApiService: FoodApiService,
+    private recipeService: RecipeService
+  ) {
+    this.allIngrediens = recipeService.getIngredientName() ?? [];
     this.filteredIngredients = this.ingredientCtrl.valueChanges.pipe(
       startWith(null),
       map((ingredient: string | null) =>
         ingredient
           ? this._filterIngredients(ingredient)
-          : this.allIngrediens.slice(0, 10)
+          : this.allIngrediens!.slice(0, 20)
       )
     );
   }
@@ -116,11 +60,15 @@ export class FormComponent {
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    if (
-      !this.ingredients.includes(value) &&
-      this.allIngrediens.includes(value)
-    ) {
+    if (this.ingredients.length >= 10) {
+      this.snackBar.open('No puede agregar mas de 10 ingredientes', '', {
+        duration: 2000,
+      });
+      return;
+    }
+    if (this.allIngrediens!.includes(value)) {
       this.ingredients.push(value);
+      this.allIngrediens!.splice(this.allIngrediens!.indexOf(value), 1);
     }
     event.chipInput!.clear();
     this.ingredientCtrl.setValue(null);
@@ -131,33 +79,40 @@ export class FormComponent {
 
     if (index >= 0) {
       this.ingredients.splice(index, 1);
-
       this.announcer.announce(`Removed ${ingredient}`);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    if (!this.ingredients.includes(event.option.viewValue)) {
-      this.ingredients.push(event.option.viewValue);
+    if (this.ingredients.length >= 10) {
+      this.snackBar.open('No puede agregar mas de 10 ingredientes', '', {
+        duration: 2000,
+      });
+      return;
     }
+    this.ingredients.push(event.option.viewValue);
+    this.allIngrediens!.splice(
+      this.allIngrediens!.indexOf(event.option.viewValue),
+      1
+    );
     this.ingredientInput.nativeElement.value = '';
     this.ingredientCtrl.setValue(null);
   }
 
   private _filterIngredients(value: string): string[] {
     const filterValue = value.toLowerCase();
-    const filterIngredients = this.allIngrediens.filter((option) =>
+    const filterIngredients = this.allIngrediens!.filter((option) =>
       option.toLowerCase().includes(filterValue)
     );
-    return filterIngredients.slice(0, 10);
+    return filterIngredients.slice(0, 20);
   }
 
   private _filterRecipes(value: string): string[] {
     const filterValue = value.toLowerCase();
-    const filteredRecipes = this.recipes.filter((option) =>
+    const filteredRecipes = this.recipes!.filter((option) =>
       option.toLowerCase().includes(filterValue)
     );
-    return filteredRecipes.slice(0, 10);
+    return filteredRecipes.slice(0, 20);
   }
 
   onSubmit() {
@@ -167,6 +122,18 @@ export class FormComponent {
       });
       return;
     }
-    this.hidden = false;
+    var recipeId = this.recipeService.getRecipeByName(this.myControl.value!);
+    if (recipeId) {
+      this.loading = true;
+      this.hidden = true;
+      this.foodApiService
+        .getRecipes(recipeId.id.toString())
+        .subscribe((data) => {
+          console.log(data);
+          this.responseRecipes = data;
+          this.hidden = false;
+          this.loading = false;
+        });
+    }
   }
 }

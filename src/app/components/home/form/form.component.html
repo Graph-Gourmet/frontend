@@ -63,7 +63,12 @@
     </div>
 
     <div class="flex">
-      <button mat-raised-button color="primary" (click)="onSubmit()">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onSubmit()"
+        [disabled]="loading"
+      >
         Find
       </button>
     </div>
@@ -73,16 +78,15 @@
     <div class="flex">
       <h2>Results 🧑‍🍳</h2>
     </div>
+    <div class="flex" *ngIf="loading">
+      <img src="../../../../assets/gifs/loading.gif" alt="loading icon gif" />
+    </div>
     <div class="flex" *ngIf="!hidden">
       <mat-card *ngFor="let recipe of responseRecipes" class="example-card">
+        <img mat-card-image src="{{ recipe.thumbnail_url }}" alt="" />
         <mat-card-header>
-          <mat-card-title>{{ recipe.titulo }}</mat-card-title>
+          <mat-card-title>{{ recipe.name }}</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-          <p>
-            {{ recipe.descripcion }}
-          </p>
-        </mat-card-content>
       </mat-card>
     </div>
   </div>

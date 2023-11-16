@@ -1,15 +1,20 @@
 @import url("https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css");
 
-mat-form-field {
-  /* width: 40% !important; */
-}
-
 mat-card {
   width: 30%;
 }
 
-img {
-  min-height: 50vh;
+img.mat-card-image {
+  object-fit: cover;
+  height: 60%;
+}
+
+mat-card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .example-form {
@@ -42,4 +47,12 @@ img {
 .scrollable-section {
   overflow-y: auto;
   max-height: 500px;
+}
+
+.img-container {
+  width: 100%;
+  height: 100%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
