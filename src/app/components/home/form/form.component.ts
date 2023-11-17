@@ -8,6 +8,8 @@ import { Observable, map, startWith } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FoodApiService } from 'src/app/services/food-api.service';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CardComponent } from '../card/card.component';
 
 @Component({
   selector: 'app-form',
@@ -32,7 +34,8 @@ export class FormComponent {
   constructor(
     private snackBar: MatSnackBar,
     private foodApiService: FoodApiService,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private dialog: MatDialog
   ) {
     this.allIngrediens = recipeService.getIngredientName() ?? [];
     this.filteredIngredients = this.ingredientCtrl.valueChanges.pipe(
@@ -135,5 +138,17 @@ export class FormComponent {
           this.loading = false;
         });
     }
+  }
+
+  openRecipeCard(recipe: any) {
+    const dialogRef: MatDialogRef<CardComponent> = this.dialog.open(
+      CardComponent,
+      {
+        data: { formValues: recipe },
+      }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
 }

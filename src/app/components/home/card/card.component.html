@@ -1,0 +1,53 @@
+<body>
+  <div class="div-center">
+    <h1>{{ recipe.name }}</h1>
+  </div>
+  <div class="div-center">
+    <img src="{{ recipe.thumbnail_url }}" alt="" />
+  </div>
+  <div class="container">
+    <div class="sub-container pr">
+      <h2>Ingredients</h2>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">
+          {{ ingredient.ingredient }}
+        </li>
+      </ul>
+    </div>
+    <div class="sub-container pl">
+      <h2>Nutrition</h2>
+      <ul>
+        <li>
+          Carbohydrates:
+          <span class="purple">{{ recipe.nutrition.carbohydrates }}</span>
+        </li>
+        <li>
+          Calories:
+          <span class="green">{{ recipe.nutrition.calories }}</span>
+        </li>
+        <li>
+          Protein:
+          <span class="blue">{{ recipe.nutrition.protein }}</span>
+        </li>
+        <li>
+          Sugar:
+          <span class="red">{{ recipe.nutrition.sugar }}</span>
+        </li>
+        <li>
+          Fiber:
+          <span class="orange">{{ recipe.nutrition.fiber }}</span>
+        </li>
+        <li>
+          Fat:
+          <span class="violet">{{ recipe.nutrition.fat }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="sub-container">
+      <h2>Price</h2>
+      <p>{{ recipe.price }}</p>
+    </div>
+  </div>
+</body>

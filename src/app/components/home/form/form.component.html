@@ -87,6 +87,17 @@
         <mat-card-header>
           <mat-card-title>{{ recipe.name }}</mat-card-title>
         </mat-card-header>
+        <mat-card-content>
+          <div class="flex">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="openRecipeCard(recipe)"
+            >
+              Details
+            </button>
+          </div>
+        </mat-card-content>
       </mat-card>
     </div>
   </div>

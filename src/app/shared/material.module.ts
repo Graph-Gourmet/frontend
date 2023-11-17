@@ -15,6 +15,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatOptionModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [],
@@ -37,6 +42,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatOptionModule,
     MatAutocompleteModule,
     MatSnackBarModule,
+    MatDialogModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule,
   ],
   exports: [
     MatButtonModule,
@@ -57,6 +67,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatOptionModule,
     MatAutocompleteModule,
     MatSnackBarModule,
+    MatDialogModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule,
   ],
 })
 export class MaterialModule {}

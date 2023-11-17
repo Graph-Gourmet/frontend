@@ -14,6 +14,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { FormComponent } from './components/home/form/form.component';
 import { CardsComponent } from './components/team/cards/cards.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CardComponent } from './components/home/card/card.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     FormComponent,
     CardsComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
