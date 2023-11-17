@@ -18,7 +18,6 @@ import { CardComponent } from '../card/card.component';
 })
 export class FormComponent {
   recipes = this.recipeService.getRecipeNames();
-  myControl = new FormControl('');
   filteredOptions!: Observable<string[]>;
   filteredOptionsIngredients!: Observable<string[]>;
   separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -30,6 +29,20 @@ export class FormComponent {
   hidden: boolean = true;
   loading: boolean = false;
   responseRecipes: any;
+
+  recipeControl = new FormControl('');
+  minPriceControl = new FormControl();
+  maxPriceControl = new FormControl();
+  minCaloriesControl = new FormControl();
+  maxCaloriesControl = new FormControl();
+  minCarbohydratesControl = new FormControl();
+  maxCarbohydratesControl = new FormControl();
+  minProteinControl = new FormControl();
+  maxProteinControl = new FormControl();
+  minFatControl = new FormControl();
+  maxFatControl = new FormControl();
+  minSugarControl = new FormControl();
+  maxSugarControl = new FormControl();
 
   constructor(
     private snackBar: MatSnackBar,
@@ -51,7 +64,7 @@ export class FormComponent {
   @ViewChild('ingredientInput') ingredientInput!: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions = this.recipeControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filterRecipes(value || ''))
     );
@@ -59,6 +72,66 @@ export class FormComponent {
       startWith(''),
       map((value) => this._filterIngredients(value || ''))
     );
+    this.minPriceControl.valueChanges.subscribe((minPrice) => {
+      if (minPrice > this.maxPriceControl.value) {
+        this.maxPriceControl.setValue(minPrice);
+      }
+    });
+    this.maxPriceControl.valueChanges.subscribe((maxPrice) => {
+      if (maxPrice < this.minPriceControl.value) {
+        this.minPriceControl.setValue(maxPrice);
+      }
+    });
+    this.minCaloriesControl.valueChanges.subscribe((minCalories) => {
+      if (minCalories > this.maxCaloriesControl.value) {
+        this.maxCaloriesControl.setValue(minCalories);
+      }
+    });
+    this.maxCaloriesControl.valueChanges.subscribe((maxCalories) => {
+      if (maxCalories < this.minCaloriesControl.value) {
+        this.minCaloriesControl.setValue(maxCalories);
+      }
+    });
+    this.minCarbohydratesControl.valueChanges.subscribe((minCarbohydrates) => {
+      if (minCarbohydrates > this.maxCarbohydratesControl.value) {
+        this.maxCarbohydratesControl.setValue(minCarbohydrates);
+      }
+    });
+    this.maxCarbohydratesControl.valueChanges.subscribe((maxCarbohydrates) => {
+      if (maxCarbohydrates < this.minCarbohydratesControl.value) {
+        this.minCarbohydratesControl.setValue(maxCarbohydrates);
+      }
+    });
+    this.minProteinControl.valueChanges.subscribe((minProtein) => {
+      if (minProtein > this.maxProteinControl.value) {
+        this.maxProteinControl.setValue(minProtein);
+      }
+    });
+    this.maxProteinControl.valueChanges.subscribe((maxProtein) => {
+      if (maxProtein < this.minProteinControl.value) {
+        this.minProteinControl.setValue(maxProtein);
+      }
+    });
+    this.minFatControl.valueChanges.subscribe((minFat) => {
+      if (minFat > this.maxFatControl.value) {
+        this.maxFatControl.setValue(minFat);
+      }
+    });
+    this.maxFatControl.valueChanges.subscribe((maxFat) => {
+      if (maxFat < this.minFatControl.value) {
+        this.minFatControl.setValue(maxFat);
+      }
+    });
+    this.minSugarControl.valueChanges.subscribe((minSugar) => {
+      if (minSugar > this.maxSugarControl.value) {
+        this.maxSugarControl.setValue(minSugar);
+      }
+    });
+    this.maxSugarControl.valueChanges.subscribe((maxSugar) => {
+      if (maxSugar < this.minSugarControl.value) {
+        this.minSugarControl.setValue(maxSugar);
+      }
+    });
   }
 
   add(event: MatChipInputEvent): void {
@@ -119,20 +192,37 @@ export class FormComponent {
   }
 
   onSubmit() {
-    if (this.myControl.value == '') {
+    if (this.recipeControl.value == '') {
       this.snackBar.open('Debe ingresar una receta antes de continuar', '', {
         duration: 2000,
       });
       return;
     }
-    var recipeId = this.recipeService.getRecipeByName(this.myControl.value!);
+    var recipeId = this.recipeService.getRecipeByName(
+      this.recipeControl.value!
+    );
+
     if (recipeId) {
+      const filters = {
+        minPrice: this.minPriceControl.value,
+        maxPrice: this.maxPriceControl.value,
+        minCalories: this.minCaloriesControl.value,
+        maxCalories: this.maxCaloriesControl.value,
+        minCarbohydrates: this.minCarbohydratesControl.value,
+        maxCarbohydrates: this.maxCarbohydratesControl.value,
+        minProtein: this.minProteinControl.value,
+        maxProtein: this.maxProteinControl.value,
+        minFat: this.minFatControl.value,
+        maxFat: this.maxFatControl.value,
+        minSugar: this.minSugarControl.value,
+        maxSugar: this.maxSugarControl.value,
+      };
+
       this.loading = true;
       this.hidden = true;
       this.foodApiService
-        .getRecipes(recipeId.id.toString())
+        .getRecipes(recipeId.id.toString(), this.ingredients, filters)
         .subscribe((data) => {
-          console.log(data);
           this.responseRecipes = data;
           this.hidden = false;
           this.loading = false;

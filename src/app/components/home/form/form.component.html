@@ -1,7 +1,7 @@
 <form class="example-form">
   <div class="container">
     <div class="flex"><h2>Enter your Ingredient 🧑‍🍳</h2></div>
-    <div class="flex">
+    <div class="flex overflow-y">
       <div class="flex-son">
         <mat-form-field class="example-full-width">
           <mat-label>Recipe</mat-label>
@@ -10,7 +10,7 @@
             placeholder="Pick one"
             aria-label="Recipe"
             matInput
-            [formControl]="myControl"
+            [formControl]="recipeControl"
             [matAutocomplete]="autoRecipe"
           />
           <mat-autocomplete autoActiveFirstOption #autoRecipe="matAutocomplete">
@@ -59,6 +59,181 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
+      </div>
+    </div>
+
+    <div class="div-center">
+      <div class="overflow-auto">
+        <div class="flex">
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Maximun Price</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="maxPriceControl"
+              />
+              <span matTextPrefix>$&nbsp;</span>
+              <span matTextSuffix>.00</span>
+            </mat-form-field>
+          </div>
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Minimun Price</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="minPriceControl"
+              />
+              <span matTextPrefix>$&nbsp;</span>
+              <span matTextSuffix>.00</span>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Maximun Calories</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="maxCaloriesControl"
+              />
+              <span matTextSuffix>cal</span>
+            </mat-form-field>
+          </div>
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Minimun Calories</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="minCaloriesControl"
+              />
+              <span matTextSuffix>cal</span>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Maximun Carbohydrates</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="maxCarbohydratesControl"
+              />
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+          </div>
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Minimun Carbohydrates</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="minCarbohydratesControl"
+              />
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Maximun Protein</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="maxProteinControl"
+              />
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+          </div>
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Minimun Protein</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="minProteinControl"
+              />
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Maximun Fat</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="maxFatControl"
+              />
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+          </div>
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Minimun Fat</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="minFatControl"
+              />
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Maximun Sugar</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="maxSugarControl"
+              />
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+          </div>
+          <div class="flex-son">
+            <mat-form-field floatLabel="always">
+              <mat-label>Minimun Sugar</mat-label>
+              <input
+                matInput
+                type="number"
+                class="example-right-align"
+                placeholder="0"
+                [formControl]="minSugarControl"
+              />
+              <span matTextSuffix>g</span>
+            </mat-form-field>
+          </div>
+        </div>
       </div>
     </div>
 
