@@ -30,6 +30,7 @@ export class FormComponent {
   hidden: boolean = true;
   loading: boolean = false;
   responseRecipes: any;
+  responseGraph: any;
 
   recipeControl = new FormControl('');
   minPriceControl = new FormControl();
@@ -224,7 +225,12 @@ export class FormComponent {
       this.foodApiService
         .getRecipes(recipeId.id.toString(), this.ingredients, filters)
         .subscribe((data) => {
-          this.responseRecipes = data;
+          var recievedData = data as {
+            closest_recipes: any;
+            graph_data: any;
+          };
+          this.responseRecipes = recievedData.closest_recipes;
+          this.responseGraph = recievedData.graph_data;
           this.hidden = false;
           this.loading = false;
         });
@@ -249,16 +255,16 @@ export class FormComponent {
   }
 
   showGraph() {
-    // if (!this.responseRecipes) {
-    //   this.snackBar.open('You still havent found any recipes', '', {
-    //     duration: 2000,
-    //   });
-    //   return;
-    // }
+    if (!this.responseRecipes) {
+      this.snackBar.open('You still havent found any recipes', '', {
+        duration: 2000,
+      });
+      return;
+    }
     const dialogRef: MatDialogRef<GraphComponent> = this.dialog.open(
       GraphComponent,
       {
-        data: { formValues: this.responseRecipes },
+        data: { formValues: this.responseGraph },
       }
     );
   }
