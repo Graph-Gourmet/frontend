@@ -1,1 +1,126 @@
-<p>documentation-view works!</p>
+<body>
+  <header>
+    <h1>Documentación del Proyecto</h1>
+  </header>
+  <main>
+    <section id="documentationSection">
+      <h2>Documentación</h2>
+      <div class="documentation">
+        <h3>Descripción del problema</h3>
+        <p>
+          El objetivo de este proyecto es utilizar un conjunto de datos
+          (dataset) que contiene información sobre recetas de comida para
+          representar y resolver un problema usando la búsqueda en grafos. Este
+          problema se basará en una situación de la vida real en la que un
+          usuario desea encontrar recetas de comida que cumplan con ciertos
+          criterios específicos, como ingredientes disponibles, preferencias del
+          usuario, dietéticas, etc.
+        </p>
+        <h3>Características y Origen del Conjunto de Datos</h3>
+        <p>
+          La muestra de conjunto de datos contiene un total de 07 variables para
+          cada una de las recetas de comida, entre las cuales se encuentran:
+          título, ingredientes, instrucciones de preparación, enlace de fuente
+          original, importado de otro conjunto de recetas, lista de ingredientes
+          sin ser medidas y el sitio web de donde se obtuvo la receta.
+        </p>
+        <h3>Propuesta</h3>
+        <p>
+          Objetivo de la Propuesta: El objetivo principal de esta propuesta es
+          desarrollar un sistema que permita a los usuarios buscar recetas de
+          comida de manera eficiente y personalizada a través de un grafo de
+          recetas basado en el conjunto de datos proporcionado. Técnica y
+          Metodología: Para lograr esto, utilizaremos técnicas de procesamiento
+          de datos para pre procesar y estructurar el conjunto de datos en un
+          grafo. Luego, implementaremos algoritmos de búsqueda en grafos, como
+          BFS (Breadth-First Search) o DFS (Depth-First Search), para permitir a
+          los usuarios encontrar recetas que cumplan con sus criterios de
+          búsqueda. Además, exploramos la posibilidad de aplicar algoritmos de
+          recomendación basados en grafos para sugerir recetas relacionadas en
+          función de las preferencias del usuario y las similitudes en los
+          ingredientes. Para lograr esto tenemos ideado usar un algoritmo para
+          agregarle un peso a las aristas de la siguientes forma:
+        </p>
+        <div class="image-formula-container">
+          <img
+            src="../../../assets/images/formula.png"
+            alt="formula"
+            class="image-fomula"
+          />
+        </div>
+        <p>
+          Este resultado nos dará en forma decimal un número que representa qué
+          tan común es un plato con respecto a otro.
+        </p>
+        <h3>Github</h3>
+        <p>
+          El uso de Github en los proyectos actuales es de suma importancia pues
+          este ayuda organizando código,carpetas, proyecto y apoya con el flujo
+          de tareas para poder guiar y facilitar su uso en equipo sean grandes o
+          chicos. En esta oportunidad se creó una organización donde se puede
+          visualizar el frontend que fue creado usando el framework de Angular y
+          el backend que fue creado usando python. En el caso de backend, se
+          encuentran aquí también los datos que fueron encontrados para realizar
+          este proyecto en conjunto con los algoritmos utilizados para poder
+          hallar respuesta al problema que fue planteado.
+        </p>
+        <p>
+          Link de la organización en Github:
+          <a href="https://github.com/Graph-Gourmet">Graph Gourmet</a>
+        </p>
+        <h3>Conclusiones</h3>
+        <h4>Logros y Aprendizajes:</h4>
+        <p>
+          Durante el desarrollo de este proyecto, se lograron varios hitos
+          significativos. La implementación exitosa de algoritmos de búsqueda en
+          grafos, como Dijkstra para encontrar recetas similares, y la
+          representación gráfica de datos utilizando bibliotecas como D3.js,
+          destacan como logros clave. El equipo también adquirió una comprensión
+          profunda de la importancia de estructurar y procesar datos de manera
+          eficiente para optimizar las búsquedas en grafos. La utilización de
+          Git y Github en un enfoque Gitflow facilitó la colaboración y el
+          seguimiento del progreso del proyecto. El desarrollo del frontend con
+          Angular y el backend con Python permitió a los miembros del equipo
+          integrar sus habilidades y crear una aplicación cohesiva y funcional.
+        </p>
+        <h4>Retos y Lecciones Aprendidas:</h4>
+        <p>
+          El proyecto no estuvo exento de desafíos, como la integración
+          eficiente de algoritmos de recomendación basados en grafos y la
+          optimización del rendimiento de la aplicación. Estos desafíos
+          proporcionaron lecciones valiosas sobre la importancia de la
+          planificación y la gestión del tiempo en proyectos de desarrollo de
+          software. El proceso de diseñar y desarrollar el aplicativo desde cero
+          permitió al equipo enfrentarse a problemas del mundo real y encontrar
+          soluciones prácticas. La creación de wireframes y prototipos
+          proporcionó una visión clara de la interfaz de usuario, y las pruebas
+          funcionales ayudaron a identificar y abordar posibles problemas de
+          usabilidad.
+        </p>
+        <h4>Impacto y Aplicabilidad:</h4>
+        <p>
+          El resultado final del proyecto tiene un impacto directo en la
+          eficiencia y personalización de la búsqueda de recetas culinarias. La
+          aplicación proporciona a los usuarios una herramienta intuitiva para
+          descubrir nuevas recetas basadas en sus preferencias y restricciones
+          alimenticias. La metodología y técnicas aprendidas en este proyecto
+          son aplicables a una variedad de escenarios del mundo real. La
+          búsqueda en grafos se destaca como una herramienta poderosa en la
+          resolución de problemas, desde sistemas de recomendación hasta
+          planificación de rutas eficientes.
+        </p>
+      </div>
+    </section>
+    <section id="imageSection">
+      <h2>Imagenes</h2>
+      <div class="image-container">
+        <img class="row3" src="../../../assets/images/wf-home.png" />
+        <img class="row3" src="../../../assets/images/wf-documentacion.png" />
+        <img class="row3" src="../../../assets/images/wf-teams.png" />
+      </div>
+      <div class="image-container last-container">
+        <img class="row3" src="../../../assets/images/terminal-nodes.png" />
+      </div>
+    </section>
+  </main>
+</body>
