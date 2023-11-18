@@ -15,6 +15,7 @@ import { FormComponent } from './components/home/form/form.component';
 import { CardsComponent } from './components/team/cards/cards.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CardComponent } from './components/home/card/card.component';
+import { GraphComponent } from './components/home/graph/graph.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CardComponent } from './components/home/card/card.component';
     FormComponent,
     CardsComponent,
     CardComponent,
+    GraphComponent,
   ],
   imports: [
     BrowserModule,

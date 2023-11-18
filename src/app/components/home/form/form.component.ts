@@ -10,6 +10,7 @@ import { FoodApiService } from 'src/app/services/food-api.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CardComponent } from '../card/card.component';
+import { GraphComponent } from '../graph/graph.component';
 
 @Component({
   selector: 'app-form',
@@ -228,6 +229,38 @@ export class FormComponent {
           this.loading = false;
         });
     }
+  }
+
+  resetForm() {
+    this.minPriceControl.setValue(null);
+    this.maxPriceControl.setValue(null);
+    this.minCaloriesControl.setValue(null);
+    this.maxCaloriesControl.setValue(null);
+    this.minCarbohydratesControl.setValue(null);
+    this.maxCarbohydratesControl.setValue(null);
+    this.minProteinControl.setValue(null);
+    this.maxProteinControl.setValue(null);
+    this.minFatControl.setValue(null);
+    this.maxFatControl.setValue(null);
+    this.minSugarControl.setValue(null);
+    this.maxSugarControl.setValue(null);
+    this.ingredients = [];
+    this.recipeControl.setValue('');
+  }
+
+  showGraph() {
+    // if (!this.responseRecipes) {
+    //   this.snackBar.open('You still havent found any recipes', '', {
+    //     duration: 2000,
+    //   });
+    //   return;
+    // }
+    const dialogRef: MatDialogRef<GraphComponent> = this.dialog.open(
+      GraphComponent,
+      {
+        data: { formValues: this.responseRecipes },
+      }
+    );
   }
 
   openRecipeCard(recipe: any) {
