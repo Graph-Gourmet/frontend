@@ -75,7 +75,10 @@ export class FormComponent {
       map((value) => this._filterIngredients(value || ''))
     );
     this.minPriceControl.valueChanges.subscribe((minPrice) => {
-      if (minPrice > this.maxPriceControl.value) {
+      if (
+        minPrice > this.maxPriceControl.value &&
+        this.maxPriceControl.value != null
+      ) {
         this.maxPriceControl.setValue(minPrice);
       }
     });
@@ -85,7 +88,10 @@ export class FormComponent {
       }
     });
     this.minCaloriesControl.valueChanges.subscribe((minCalories) => {
-      if (minCalories > this.maxCaloriesControl.value) {
+      if (
+        minCalories > this.maxCaloriesControl.value &&
+        this.maxCaloriesControl.value != null
+      ) {
         this.maxCaloriesControl.setValue(minCalories);
       }
     });
@@ -95,7 +101,10 @@ export class FormComponent {
       }
     });
     this.minCarbohydratesControl.valueChanges.subscribe((minCarbohydrates) => {
-      if (minCarbohydrates > this.maxCarbohydratesControl.value) {
+      if (
+        minCarbohydrates > this.maxCarbohydratesControl.value &&
+        this.maxCarbohydratesControl.value != null
+      ) {
         this.maxCarbohydratesControl.setValue(minCarbohydrates);
       }
     });
@@ -105,7 +114,10 @@ export class FormComponent {
       }
     });
     this.minProteinControl.valueChanges.subscribe((minProtein) => {
-      if (minProtein > this.maxProteinControl.value) {
+      if (
+        minProtein > this.maxProteinControl.value &&
+        this.maxProteinControl.value != null
+      ) {
         this.maxProteinControl.setValue(minProtein);
       }
     });
@@ -115,7 +127,10 @@ export class FormComponent {
       }
     });
     this.minFatControl.valueChanges.subscribe((minFat) => {
-      if (minFat > this.maxFatControl.value) {
+      if (
+        minFat > this.maxFatControl.value &&
+        this.maxFatControl.value != null
+      ) {
         this.maxFatControl.setValue(minFat);
       }
     });
@@ -125,7 +140,10 @@ export class FormComponent {
       }
     });
     this.minSugarControl.valueChanges.subscribe((minSugar) => {
-      if (minSugar > this.maxSugarControl.value) {
+      if (
+        minSugar > this.maxSugarControl.value &&
+        this.maxSugarControl.value != null
+      ) {
         this.maxSugarControl.setValue(minSugar);
       }
     });
@@ -207,17 +225,28 @@ export class FormComponent {
     if (recipeId) {
       const filters = {
         minPrice: this.minPriceControl.value,
-        maxPrice: this.maxPriceControl.value,
+        maxPrice:
+          this.maxPriceControl.value == 0 ? null : this.maxPriceControl.value,
         minCalories: this.minCaloriesControl.value,
-        maxCalories: this.maxCaloriesControl.value,
+        maxCalories:
+          this.maxCaloriesControl.value == 0
+            ? null
+            : this.maxCaloriesControl.value,
         minCarbohydrates: this.minCarbohydratesControl.value,
-        maxCarbohydrates: this.maxCarbohydratesControl.value,
+        maxCarbohydrates:
+          this.maxCarbohydratesControl.value == 0
+            ? null
+            : this.maxCarbohydratesControl.value,
         minProtein: this.minProteinControl.value,
-        maxProtein: this.maxProteinControl.value,
+        maxProtein:
+          this.maxProteinControl.value == 0
+            ? null
+            : this.maxProteinControl.value,
         minFat: this.minFatControl.value,
-        maxFat: this.maxFatControl.value,
+        maxFat: this.maxFatControl.value == 0 ? null : this.maxFatControl.value,
         minSugar: this.minSugarControl.value,
-        maxSugar: this.maxSugarControl.value,
+        maxSugar:
+          this.maxSugarControl.value == 0 ? null : this.maxSugarControl.value,
       };
 
       this.loading = true;
