@@ -111,9 +111,6 @@ export class FoodApiService {
       filters.maxSugar
     );
 
-    // print as json data
-    console.log(JSON.stringify(ingredientsData));
-
     return this.http
       .post(this.baseUrl + '?id=' + id, ingredientsData, { headers })
       .pipe(retry(2), catchError(this.errorHandlerService.handleHttpError));
