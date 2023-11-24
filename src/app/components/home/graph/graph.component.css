@@ -1,0 +1,6 @@
+/* @import "~vis-network/styles/vis-network.css"; */
+
+.network-container {
+  width: 100%;
+  height: 500px;
+}
